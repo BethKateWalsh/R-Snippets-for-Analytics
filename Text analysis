@@ -1,12 +1,9 @@
-Question: What question were you trying to answer?
-Date: 1/1/2050
-Source: Where did you get the data from? (Heap, Platform Export etc)
-File Tye: .xlsx
-Size: 3 columns x 100 rows
-Column Names: "Column 1", "Column 2"... "Column 10"
+# Question: What features do users talk about most?
+# File Tye: .xlsx
+# Size: n/a
 
 
-# Generate word cloud from  interview data
+# Generate word cloud from text data
 
 library("readxl")
 library("tidyverse")
