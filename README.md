@@ -3,19 +3,18 @@ Here are R snippets to use to help answer questions about the user behaviours an
 
 > “The goal is to turn data into information, and information into insight.” – Carly Fiorina 
 
-## What you will need:
+## Documentation
 
-- R Studio Installed https://www.rstudio.com/ 
 
-## The Process
+## Installation
 
-1. Ask a question
-2. Get the data
-3. Explore data
-4. Model the data
-5. Communicate the results
+Install R Studio here https://www.rstudio.com/ 
 
-## Good code checklist
+## Requirements
+
+- R 4.1.1
+
+## Submitting Code
 
 Before submitting code snippets check that your code follows these 5 practices.
 
