@@ -29,6 +29,8 @@ Use the template:
 | Field  | Value |
 | ------------- | ------------- |
 | Question  | What question were you trying to answer?  |
+| Date  | 1/1/2050  |
+| Question  | What question were you trying to answer?  |
 | Source  | Where did you get the data from? (Heap, Platform Export etc)  |
 | File Tye  | .xlsx |
 | Size  | 3 columns x 100 rows |
