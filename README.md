@@ -18,15 +18,15 @@ Install R Studio here https://www.rstudio.com/
 
 Before submitting code snippets check that your code follows these 5 practices.
 
--[ ] Anonymize your code by removing names of people or companies
--[ ] Write as few lines as possible
--[ ] Leave comments so others know what your code does 
--[ ] Use paragraphs to keep related code together
+- [ ] Anonymize your code by removing names of people or companies
+- [ ] Write as few lines as possible
+- [ ] Leave comments so others know what your code does 
+- [ ] Use paragraphs to keep related code together
 -[ ] Include import statements for libraries
 
 Use the template:
 
-| Product Name  | Second Header |
+| Field  | Value |
 | ------------- | ------------- |
 | Question  | What question were you trying to answer?  |
 | Source  | Where did you get the data from? (Heap, Platform Export etc)  |
