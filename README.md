@@ -15,7 +15,9 @@ Here are R snippets to use to help answer questions about the user behaviours an
 4. Model the data
 5. Communicate the results
 
-## Before submitting code snippets...
+## Good code checklist
+
+Before submitting code snippets check that your code follows these 5 practices.
 
 - Anonymize your code by removing names of people or companies
 - Write as few lines as possible
