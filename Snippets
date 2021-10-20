@@ -4,3 +4,134 @@ Source: Where did you get the data from? (Heap, Platform Export etc)
 File Tye: .xlsx
 Size: 3 columns x 100 rows
 Column Names: "Column 1", "Column 2"... "Column 10"
+
+
+# Generate word cloud from  interview data
+
+library("readxl")
+library("tidyverse")
+library("dplyr")
+library("wordcloud")
+library("tm")
+
+# EDIT HERE - Select your customers
+#
+#
+# Pick the customers you would like use
+my_customers <- c("INSERT_CUSTOMER","INSERT_CUSTOMER")
+
+
+# EDIT HERE - Change the URL if needed
+#
+#
+# Create a new table to add your data to it
+all_customers <- data.frame()
+for(customer in my_customers) {
+  temp_df <- read_excel("~/foldername/filename.xlsx", customer)
+  all_customers <- rbind(all_customers, temp_df)
+}
+# Print your data frame size and number of companies
+paste("Your data has ", nrow(all_customers), "rows and ", ncol(all_customers), "columns. There are ", length(unique(all_customers$company)), "companies.")
+# Get just the transcript column
+all_customers <- all_customers[, (colnames(all_customers) %in% c("date","company","interviewee","Persona","transcript"))]
+all_customers <- data.frame(lapply(all_customers, gsub, pattern = '"', replacement = ' '))
+
+# START HERE - This will create a word cloud from the words the customer uses.
+#
+#
+for_docs$transcript <- gsub( "\\[([^]]+)\\]", "", all_customers$transcript)
+# Vectorise
+docs <- Corpus(VectorSource(all_customers$transcript))
+inspect(docs)
+# Transform
+toSpace <- content_transformer(function (x , pattern ) gsub(pattern, " ", x))
+docs <- tm_map(docs, toSpace, "/")
+docs <- tm_map(docs, toSpace, "@")
+docs <- tm_map(docs, toSpace, "\\|")
+# Convert the text to lower case
+docs <- tm_map(docs, content_transformer(tolower))
+# Remove numbers
+docs <- tm_map(docs, removeNumbers)
+# Remove english common stopwords
+docs <- tm_map(docs, removeWords, stopwords('english'))
+# Remove your own stop word
+
+
+# EDIT HERE - Add words here you don't want to appear in the final image
+#
+#
+# specify your stopwords as a character vector
+docs <- tm_map(docs, removeWords, c("can", "need", "will", "like", "’ll", "don’t", "'t", "paul", "customers", "getcustomers", "thing", "see",  "get")) 
+
+
+# Remove punctuations
+docs <- tm_map(docs, removePunctuation)
+# Eliminate extra white spaces
+docs <- tm_map(docs, stripWhitespace)
+# Run to just belwo the sollow paragrph to
+# print top 10 words in console with frequency
+dtm <- TermDocumentMatrix(docs)
+m <- as.matrix(dtm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d <- data.frame(word = names(v),freq=v)
+# Iw as really struggling to remove this word so cheated :)
+d <- d[!grepl(c("don"),d$word),]
+head(d, 20)
+
+# EDIT THIS - You an play around with the settings to change the cloud image
+#
+#
+# min.freq = min number of times a word has to appear to appear in the image
+# min.freq = max number of times a word has to appear to appear in the image
+# colors = this is pretty obvious :-)
+set.seed(3)
+wordcloud(words = d$word, freq = d$freq, min.freq = 8, max.words=120, random.order=FALSE, rot.per=0.3, colors=brewer.pal(3, "Dark2"))
+
+# END - Up to here will create a word cloud from the words the customer uses.
+#
+#
+
+
+
+# START HERE - This will create a word cloud from the theme, observation, application etc the customer uses.
+#
+#
+# extract the codes [] using str extract save to df we will plot against
+df_customer_codes <- all_customers %>% 
+  filter(!is.na(date)) %>% 
+  # extract codes from transcript
+  mutate(code = str_extract_all(transcript, "\\[([^]]+)\\]")) %>%
+  # turn the list produced to a dataframe
+  unnest(code) %>% 
+  # turn the code case to lower %>% 
+  mutate(code = tolower(code)) %>% 
+  filter(str_detect(code, ":")) %>% 
+  separate(code, into = c("theme", "application", "observation", "quote"), 
+           sep=" ", extra = "merge", remove = FALSE) %>% 
+  mutate(theme = str_remove(theme, "\\[")) %>% 
+  mutate(quote = str_remove(quote, "\\]")) %>% 
+  distinct(date, interviewee, theme, application, observation, quote, .keep_all = TRUE)
+
+
+# EDIT HERE - To decide if you want the word cloud to show theme, application, observation, quote
+#
+#
+# Replace "application" with "theme" or "observation"
+list_data <- df_customer_codes %>%  pull(application)
+
+# Vectorise
+docs <- Corpus(VectorSource(list_app))
+inspect(docs)
+# Transform
+toSpace <- content_transformer(function (x , pattern ) gsub(pattern, " ", x))
+dtm <- TermDocumentMatrix(docs)
+m <- as.matrix(dtm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d <- data.frame(word = names(v),freq=v)
+head(d, 10)
+set.seed(3)
+wordcloud(words = d$word, freq = d$freq, min.freq = 1, max.words=200, random.order=FALSE, rot.per=0.3,colors=brewer.pal(3, "Dark2"))
+
+# END - Up to here will create a word cloud from the themes, applciations or observation
+#
+#
