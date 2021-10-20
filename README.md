@@ -16,7 +16,7 @@ Install R Studio here https://www.rstudio.com/
 
 ## Submitting Code
 
-Before submitting code snippets check that your code follows these 5 practices.
+### Check that your code follows these 5 practices
 
 - [X] Anonymize your code by removing names of people or companies
 - [X] Write as few lines as possible
@@ -24,7 +24,7 @@ Before submitting code snippets check that your code follows these 5 practices.
 - [X] Use paragraphs to keep related code together
 - [X] Include import statements for libraries
 
-Use the template:
+### Use the template
 | Field  | Value |
 | ------------- | ------------- |
 | Question  | What question were you trying to answer?  |
