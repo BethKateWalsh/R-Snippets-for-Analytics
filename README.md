@@ -25,7 +25,6 @@ Before submitting code snippets check that your code follows these 5 practices.
 - [X] Include import statements for libraries
 
 Use the template:
-| ------------- | ------------- |
 | Question  | What question were you trying to answer?  |
 | Date  | 1/1/2050  |
 | Question  | What question were you trying to answer?  |
