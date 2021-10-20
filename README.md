@@ -1,5 +1,5 @@
 # R-Snippets-for-Analytics
-Here are R snippets to use to help answer questions about the user behaviours and make decision about designs.
+Here are code snippets to help answer questions about users and help make decisions about the product.
 
 > “The goal is to turn data into information, and information into insight.” – Carly Fiorina 
 
