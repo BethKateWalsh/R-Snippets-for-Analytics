@@ -18,11 +18,11 @@ Install R Studio here https://www.rstudio.com/
 
 Before submitting code snippets check that your code follows these 5 practices.
 
-- [ ] Anonymize your code by removing names of people or companies
-- [ ] Write as few lines as possible
-- [ ] Leave comments so others know what your code does 
-- [ ] Use paragraphs to keep related code together
--[ ] Include import statements for libraries
+- [X] Anonymize your code by removing names of people or companies
+- [X] Write as few lines as possible
+- [X] Leave comments so others know what your code does 
+- [X] Use paragraphs to keep related code together
+- [X] Include import statements for libraries
 
 Use the template:
 
