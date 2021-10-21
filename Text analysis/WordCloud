@@ -32,6 +32,7 @@ paste("Your data has ", nrow(all_customers), "rows and ", ncol(all_customers), "
 all_customers <- all_customers[, (colnames(all_customers) %in% c("date","company","interviewee","Persona","transcript"))]
 all_customers <- data.frame(lapply(all_customers, gsub, pattern = '"', replacement = ' '))
 
+
 # START HERE - This will create a word cloud from the words the customer uses.
 #
 #
@@ -73,6 +74,7 @@ d <- data.frame(word = names(v),freq=v)
 # Iw as really struggling to remove this word so cheated :)
 d <- d[!grepl(c("don"),d$word),]
 head(d, 20)
+
 
 # EDIT THIS - You an play around with the settings to change the cloud image
 #
